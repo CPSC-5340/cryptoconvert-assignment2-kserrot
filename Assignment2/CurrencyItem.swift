@@ -8,11 +8,66 @@
 import SwiftUI
 
 struct CurrencyItem: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+
+var card : ConvertModel<CurrencyItemModel>
+
+var body: some View {
+        if card.isFront{
+            FrontCurrencyItem(card: card.cardCOntent)
+            
+        } else {
+            BackCurrencyItem(card: card.cardCOntent)
+        }
     }
 }
 
 #Preview {
-    CurrencyItem()
+CurrencyItem(card: ConvertModel(cardCOntent: CurrencyItemModel(currencyName: "", currencyCode: "", currencyFlag: "", multiplier: 1)))
 }
+
+struct FrontCurrencyItem: View {
+
+var card: CurrencyItemModel
+
+var body: some View {
+    VStack {
+        HStack {
+            Text(card.currencyFlag)
+            Spacer()
+        }
+        HStack{
+            Spacer()
+            Text(card.currencyCode)
+        }
+    }
+    .frame(width: 130, height: 130)
+    .padding()
+    .background(.blue)
+}
+}
+
+struct BackCurrencyItem: View {
+
+var card: CurrencyItemModel
+
+var body: some View {
+    VStack {
+        HStack {
+            Text(card.currencyName)
+            Spacer()
+        }
+        HStack{
+            Spacer()
+            Text(String(card.multiplier))
+        }
+    }
+    .frame(width: 130, height: 130)
+    .padding()
+    .background(.blue)
+}
+}
+
+
+//#Preview {
+//    CurrencyItem()
+//}

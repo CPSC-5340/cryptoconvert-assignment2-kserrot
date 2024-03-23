@@ -8,11 +8,26 @@
 import SwiftUI
 
 struct Converter: View {
+    
+    @ObservedObject var viewModel = CurrencyConverterViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]) {
+                ForEach(viewModel.listOfCards){ card in
+                    CurrencyItem(card: card)
+                        .onTapGesture {
+                            viewModel.flip(card: card)
+                        }
+                }
+            }
+        }
+        .onAppear{
+            viewModel.fetchCards()
+        }
     }
 }
-
+    
 #Preview {
     Converter()
 }
