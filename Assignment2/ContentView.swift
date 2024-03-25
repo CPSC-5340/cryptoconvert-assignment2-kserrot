@@ -9,13 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView{
+            List{
+                NavigationLink(destination: Converter()){
+                    Text("World Currency Exchange")
+                }
+                NavigationLink(destination: CryptoConverter()){
+                    Text("Crypto Exchange")
+                }
+            .navigationTitle("Conversion App")
+            .navigationBarTitleDisplayMode(.inline)
+            }
         }
-        .padding()
     }
 }
 
