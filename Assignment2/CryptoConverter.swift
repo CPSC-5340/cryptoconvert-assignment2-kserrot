@@ -30,7 +30,7 @@ struct CryptoConverter: View {
                         HStack{
                             Text(key)
                             Spacer()
-                            Text("\(convertToCurrency(bitcoinAmount: bitcoinAmount, rate: value), specifier: "%.2f")")
+                            Text("\(convertToCurrency(bitcoinAmount: bitcoinAmount, rate: value))")
                         }
                     }
                 }
